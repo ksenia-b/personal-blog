@@ -18,7 +18,9 @@ class Blogpost(db.Model):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    posts = Blogpost.query.order_by(Blogpost.date_posted.desc()).all()
+
+    return render_template('index.html', posts = posts)
 
 
 @app.route('/about')
@@ -30,9 +32,7 @@ def about():
 def post(post_id):
     post = Blogpost.query.filter_by(id=post_id).one()
 
-    date_posted = post.date_posted.strftime('%M')
-
-    return render_template('post.html', post=post, date_posted = date_posted)
+    return render_template('post.html', post=post)
 
 
 @app.route('/contact')
