@@ -97,15 +97,16 @@
             </div>
           </div>
           <div class="control-group">
-            <div class="form-group col-xs-12 floating-label-form-group controls">
+            <div class="form-group  floating-label-form-group controls">
               <label>Author</label>
               <input type="tel" class="form-control" placeholder="Author" name="author" id ="author" required data-validation-required-message="Please enter the author.">
               <p class="help-block text-danger"></p>
             </div>
           </div>
           <div class="control-group">
+            <label class="message">Message</label>
             <div class="form-group floating-label-form-group controls">
-              <label>Message</label>
+<!--              <label>Message</label>-->
               <textarea rows="5" class="form-control" placeholder="Blog content" id="summernote" name="content" required data-validation-required-message="Please enter a content."></textarea>
               <p class="help-block text-danger"></p>
             </div>
@@ -150,7 +151,14 @@
     font-weight: 500;
     padding: 10px;
   }
-
+  .message{
+    color: gray;
+    font-weight: 100;
+    margin: 9px 0px;
+  }
+  .collapse.navbar-collapse{
+    display: flex !important;
+  }
 </style>
 </body>
 
