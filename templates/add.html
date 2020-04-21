@@ -18,6 +18,15 @@
   <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
+<!-- include libraries(jQuery, bootstrap) -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
+
   <!-- Custom styles for this template -->
   <link href="{{ url_for('static', filename='clean-blog.css' ) }}" rel="stylesheet">
 
@@ -97,7 +106,7 @@
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label>Message</label>
-              <textarea rows="5" class="form-control" placeholder="Blog content" name="content" id="content" required data-validation-required-message="Please enter a content."></textarea>
+              <textarea rows="5" class="form-control" placeholder="Blog content" id="summernote" name="content" required data-validation-required-message="Please enter a content."></textarea>
               <p class="help-block text-danger"></p>
             </div>
           </div>
@@ -125,12 +134,24 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+<!--  <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>-->
   <script src="{{ url_for('static', filename='bootstrap.min.css') }}"></script>
 
   <!-- Custom scripts for this template -->
   <script src="{{ url_for('static', filename='clean-blog.min.js') }}"></script>
+  <script>
+      $(document).ready(function() {
+          $('#summernote').summernote();
+      });
+  </script>
+<style>
+  .form-group button{
+    font-size: 12px;
+    font-weight: 500;
+    padding: 10px;
+  }
 
+</style>
 </body>
 
 </html>
