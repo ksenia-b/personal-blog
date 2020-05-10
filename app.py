@@ -11,6 +11,10 @@ app.config['SECRET_KEY'] = 'thisismysecretkey2345547'
 db = SQLAlchemy(app)
 admin = Admin(app)
 
+# class About(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     content = db.Column(db.Text)
+
 class Blogpost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50))
