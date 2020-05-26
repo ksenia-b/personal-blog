@@ -1,35 +1,27 @@
-from marshmallow import Schema, fields, post_load
+from flask import Flask, jsonify
+from flask_sqlalchemy import SQLAlchemy
 
-class Person():
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 
-    def __repr__(self):
-        return f'{ self.name } is { self.age } years old.'
+db = SQLAlchemy(app)
 
-
-class PersonSchema(Schema):
-    name = fields.String()
-    age = fields.Integer()
-
-    @post_load
-    def create_person(self, data, **kwargs):
-        return Person(**data)
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
 
 
+class Reward(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    reward_name = db.Column(db.String(250))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user = db.relationship('User', backref='rewards')
 
-input_data = {}
 
-input_data['name'] = input("What is your name?")
-input_data['age'] = input("What is your age?")
+@app.route('/')
+def index():
+    return jsonify({'in' : 'progress'})
 
 
-schema = PersonSchema()
-result = schema.load(input_data)
-person = schema.load(input_data)
-# person = Person(name=input_data['name'], age=input_data['age'])
-
-result = schema.dump(person)
-
-print(result)
+if __name__ == '__main__':
+    app.run(debug=True)
